@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Business Predictions</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="index.html" id="logo">Group 3</a></h1>
+								<p>Ami Mbengue</p>
+								<p>Anjali Bala</p>
+								<p>Kwadwo Okai</p>
+								<p>Nirmesh Kika</p>
+								<p>Nithder Pierre</p>
+								<hr />
+								<p>Predict the success of a business based on various Attributes</p>
+							</header>
+							<footer>
+								<a href="#banner" class="button circled scrolly">Start</a>
+							</footer>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+
+
+						</nav>
+
+				</div>
+
+			<!-- Banner -->
+				<section id="banner">
+					<header>
+						
+					</header>
+				</section>
+
+<!-- Main -->
+<div class="wrapper style2">
+
+    <article id="main" class="container special">
+        {% if prediction %}
+		<div class="results" id="results" style="height: ; overflow-y: auto; margin-bottom: 180px;"> <!-- Add flexible styles to the results div -->
+                <h2 style="text-align: center;">Prediction Results</h2>
+                {% if prediction.error %}
+                    <div class="error">
+                        Error: {{ prediction.error }}
+                        Details: {{ prediction.stderr }}
+                    </div>
+                {% else %}
+                    <h4 style="text-align: center;"><strong>The probability that your business will succeed is  {{ last_probability }}%</strong> </h4><br>
+                {% endif %}
+            </div>
+        {% else %}
+            <form method="post" action="{% url 'index' %}#results" id="predictionForm"> <!-- Add #results to the form action -->
+                <h2 style="text-align: center;">Enter Business Information</h2>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div style="text-align: center;">
+                    <a href="javascript:void(0);" class="button" onclick="submitPredictionForm();">Predict Success</a>
+                </div>
+            </form>
+        {% endif %}
+    </article>
+</div>
+								<!-- Copyright -->
+									<div class="copyright">
+										<ul class="menu">
+											<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href=#>Group 3</a></li>
+										</ul>
+									</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+		</div>
+		<script>
+			function submitPredictionForm() {
+				document.getElementById('predictionForm').submit(); // This will submit the form
+			}
+			</script>
+		<!-- Scripts -->
+        	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+	</body>
+</html>

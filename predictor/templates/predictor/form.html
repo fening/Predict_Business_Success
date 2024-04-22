@@ -1,0 +1,13 @@
+<html>
+<head>
+    <title>Predict Business Metrics</title>
+</head>
+<body>
+    <h1>Business Prediction Form</h1>
+    <form method="post" action="{% url 'predict_business' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
